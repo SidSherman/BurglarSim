@@ -11,3 +11,9 @@
     -unity-font: url('project://database/Library/unity%20default%20resources?fileID=10102&guid=0000000000000000e000000000000000&type=0#Arial');
     font-size: 35px;
 }
+
+.label {
+    width: auto;
+    font-size: 300%;
+    background-image: none;
+}
