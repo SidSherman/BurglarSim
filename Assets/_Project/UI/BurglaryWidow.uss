@@ -1,0 +1,13 @@
+.button {
+    width: 30%;
+    height: 50%;
+    flex-grow: 0;
+    flex-shrink: 1;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    -unity-text-align: middle-center;
+    -unity-font: url('project://database/Library/unity%20default%20resources?fileID=10102&guid=0000000000000000e000000000000000&type=0#Arial');
+    font-size: 35px;
+}
