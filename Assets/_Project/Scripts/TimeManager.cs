@@ -6,41 +6,46 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    [SerializeField] float _time;
-    [SerializeField] float _startedTime;
-    [SerializeField] float _elapsedTime;
-    [SerializeField] float _remainingTime;
-    [SerializeField] bool _isValidTimer;
+    [SerializeField] private float _time;
+    private float _startedTime;
+    private float _elapsedTime;
+    private  float _remainingTime;
+    private bool _isValidTimer;
+    private bool _isPausedTimer;
+    private bool _isFinishedTimer;
 
     public float TimerValue {get {return _time;} set { _time = value;}}
-
     public float StartedTime {get {return _startedTime;}}
-
     public float ElapsedTime {get {return _elapsedTime;}}
-
     public float RemainingTime {get {return _remainingTime;}}
-
     public bool IsValidTimer {get {return _isValidTimer;}}
+    public bool IsFinishedTimer { get => _isFinishedTimer; }
 
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
-        
+        _isFinishedTimer = false;
+        _isValidTimer = false;
+        _isPausedTimer = false;
     }
-
     // Update is called once per frame
     void Update()
     {
-        if(_isValidTimer)
+       
+        if (_isValidTimer)
         {
-            if(_remainingTime < 0)
+            if(!_isPausedTimer)
             {
-                _remainingTime -= Time.deltaTime;
-                _elapsedTime += Time.deltaTime;
-            }
-            else
-            {
-                
+              
+                if (_remainingTime > 0)
+                {
+                    _remainingTime -= Time.deltaTime;
+                    _elapsedTime += Time.deltaTime;
+                }
+                else
+                {
+                    StopTimer();
+                }
             }
         }   
     }
@@ -49,18 +54,42 @@ public class TimeManager : MonoBehaviour
     {
         _time = timerValue;
     }
+
+    public void PauseTimer()
+    {
+        _isPausedTimer = true;
+    }
+
+    public void ResumeTimer()
+    {
+        _isPausedTimer = false;
+    }
+
+    public void StartTimer()
+    {
+        _isFinishedTimer = false;
+        _isValidTimer = true;
+        _isPausedTimer = false;
+        _remainingTime = _time;
+        _elapsedTime = 0;
+        _startedTime = Time.time;
+    }
+
     public void StartTimer(float timerValue)
     {
+        _time = timerValue;
         _isValidTimer = true;
+        _isPausedTimer = false;
         _remainingTime = timerValue;
         _elapsedTime = 0;
         _startedTime = Time.time;
     }
-    
+
     public void StopTimer()
     {
         _isValidTimer = false;
+        _isPausedTimer = false;
+        _isFinishedTimer = true;
     }
-
 
 }

@@ -8,23 +8,10 @@ public class Pin : MonoBehaviour
     [SerializeField] private int _minValue;
     [SerializeField] private int _maxValue;
 
-    public int PinValue {get {return _pinValue;} set {_pinValue = value;}}
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    
+    public int PinValue {get {return _pinValue;} set {_pinValue = value;}}  
 
     public void SetValue(int newValue)
     {
-        _pinValue = newValue;
+        _pinValue = Mathf.Clamp(newValue, _minValue, _maxValue); ;
     }
 }
