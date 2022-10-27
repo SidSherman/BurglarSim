@@ -23,6 +23,7 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private GameObject _rulesPanel;
     [SerializeField] private GameObject _startPanel;
     [SerializeField] private GameObject _finishPanel;
+    [SerializeField] private GameObject _lastLevelPanel;
     [SerializeField] private GameObject _blockPanel;
     [SerializeField] private GameManager _gameManager;
 
@@ -53,7 +54,7 @@ public class UIHandler : MonoBehaviour
         _picklockButton.clicked += UsePicklock;
         _screwButton.clicked += UseScrew;
         _rulesButton.clicked += ShowRules;
-        _restartButton.clicked += RestartGame;
+        _restartButton.clicked += RestartLevel;
 
     }
 
@@ -115,8 +116,6 @@ public class UIHandler : MonoBehaviour
             _finishPanelUI.SetMessage("Время вышло :(");
 
         }
-
-
     }
 
     public void SetBlockPanel(bool value)
@@ -124,24 +123,43 @@ public class UIHandler : MonoBehaviour
         _blockPanel.SetActive(value);
     }
 
-    public void RestartGame()
+    public void RestartLevel()
     {
-        _gameManager.RestartGame();
         SetBlockPanel(false);
         _rulesPanel.SetActive(false);
         _startPanel.SetActive(false);
         _finishPanel.SetActive(false);
+        _gameManager.RestartGame();
+      
+    }
+
+    public void RestartGame()
+    {
+       
+        _gameManager.SetCurrentLevel(0);
+        StartGame();
+
     }
 
     public void StartGame()
     {
         SetBlockPanel(false);
-        _gameManager.StartGame();
-
         _rulesPanel.SetActive(false);
         _startPanel.SetActive(false);
         _finishPanel.SetActive(false);
+        _gameManager.StartGame();
     }
+
+    public void ShowLastPanel()
+    {
+        _rulesPanel.SetActive(false);
+        _startPanel.SetActive(false);
+        _finishPanel.SetActive(false);
+        _lastLevelPanel.SetActive(true);
+        SetBlockPanel(true);
+        _gameManager.PauseGame();
+    }
+
 
 
     private void ShowRules()
@@ -153,6 +171,7 @@ public class UIHandler : MonoBehaviour
         _gameManager.PauseGame();
     }
 
+    
     private void UseScrew()
     {
         _gameManager.ChangePinsValues(_gameManager.Screw);

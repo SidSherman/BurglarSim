@@ -25,6 +25,7 @@ public class FinishPanelUI : MonoBehaviour
 
     void StartGame()
     {
+        Debug.Log("StartGame");
         gameObject.SetActive(false);
         _uiHandler.StartGame();
     }

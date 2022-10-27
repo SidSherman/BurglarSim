@@ -34,11 +34,14 @@ public class GameManager : MonoBehaviour
             _pins[2].PinValue.ToString(),
             _timeManager.RemainingTime / _timeManager.TimerValue);
 
+        
         if(_timeManager.IsFinishedTimer)
         {
-
+           
             FailGame();
         }
+
+
     }
     
     public void CheckPins(){
@@ -56,14 +59,23 @@ public class GameManager : MonoBehaviour
 
     public void FinishGame()
     {
-     
-        _uiHandler.ShowFinishPanel(true);
-        _currentLevel++;
+        
         _timeManager.StopTimer();
+        _timeManager.InvalidateTimer();
+       
+        _currentLevel++;
+        _uiHandler.ShowFinishPanel(true);
+
+        if (_currentLevel >= levels.Length)
+        {
+            _uiHandler.ShowLastPanel();
+        }
+       
     }
 
     public void FailGame()
-    {    
+    {
+        _timeManager.InvalidateTimer();
         _uiHandler.ShowFinishPanel(false);
     }
 
@@ -82,14 +94,11 @@ public class GameManager : MonoBehaviour
     {
         if (_currentLevel >= levels.Length)
         {
-            Debug.Log("Последний уровень пройден");
-            _uiHandler.SetBlockPanel(true);
             return;
         }
-
+        
         ChangePinsValues(levels[_currentLevel].Pins.Pin1, levels[_currentLevel].Pins.Pin2, levels[_currentLevel].Pins.Pin3);
         _properPinsValue = levels[_currentLevel].TargetValue;
-        _timeManager.StartTimer(_gameTime);
         _uiHandler.SetUIOnTheStart(Hammer, Screw, Picklock, _properPinsValue.ToString());
         _timeManager.StartTimer(_gameTime);
     }
@@ -112,6 +121,14 @@ public class GameManager : MonoBehaviour
     {
         ChangePinsValues(levels[_currentLevel].Pins.Pin1, levels[_currentLevel].Pins.Pin2, levels[_currentLevel].Pins.Pin3);
         _uiHandler.SetBlockPanel(false);
+    }
+
+    public void SetCurrentLevel(int level)
+    {
+        if (_currentLevel >= levels.Length)
+        {
+            _currentLevel = level;
+        }
     }
 
     // does not work correctly

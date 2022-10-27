@@ -280,7 +280,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1615375659}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &608205415
 MonoBehaviour:
@@ -365,7 +365,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1615375659}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1074613893
 GameObject:
@@ -556,7 +556,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1615375659}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -578,6 +578,7 @@ MonoBehaviour:
   _rulesPanel: {fileID: 608205413}
   _startPanel: {fileID: 1074613893}
   _finishPanel: {fileID: 1506494332}
+  _lastLevelPanel: {fileID: 1529368525}
   _blockPanel: {fileID: 618292545}
   _gameManager: {fileID: 2071253160}
   _finishPanelUI: {fileID: 1506494334}
@@ -676,6 +677,77 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1506494332}
   m_CullTransparentMesh: 1
+--- !u!1 &1529368525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1529368526}
+  - component: {fileID: 1529368529}
+  - component: {fileID: 1529368528}
+  - component: {fileID: 1529368527}
+  m_Layer: 0
+  m_Name: LastLevelPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1529368526
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529368525}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.7314785, y: 0.37942657, z: 10.001023}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1615375659}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1529368527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529368525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5c82824efa04db4992d09d049cd5498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiHandler: {fileID: 1354321339}
+--- !u!222 &1529368528
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529368525}
+  m_CullTransparentMesh: 1
+--- !u!114 &1529368529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529368525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: aeacc23a49c1d714eaee80c204e5e4e0, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: ae6e30522a75bc34bb63a93a8714a823, type: 3}
+  m_SortingOrder: 2
 --- !u!1 &1615375658
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,6 +778,7 @@ Transform:
   m_Children:
   - {fileID: 1506494333}
   - {fileID: 1074613898}
+  - {fileID: 1529368526}
   - {fileID: 608205414}
   - {fileID: 618292547}
   - {fileID: 1354321338}
@@ -869,6 +942,10 @@ PrefabInstance:
       propertyPath: _timeManager
       value: 
       objectReference: {fileID: 55761154}
+    - target: {fileID: 4250413327880724928, guid: 4e99af41a63648e4bb466f4c4f37360d, type: 3}
+      propertyPath: _currentLevel
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4250413327880724928, guid: 4e99af41a63648e4bb466f4c4f37360d, type: 3}
       propertyPath: _pins.Array.data[0]
       value: 

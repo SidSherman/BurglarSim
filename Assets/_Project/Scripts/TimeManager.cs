@@ -77,6 +77,7 @@ public class TimeManager : MonoBehaviour
 
     public void StartTimer(float timerValue)
     {
+        Debug.Log("StartTimer");
         _time = timerValue;
         _isValidTimer = true;
         _isPausedTimer = false;
@@ -87,9 +88,17 @@ public class TimeManager : MonoBehaviour
 
     public void StopTimer()
     {
-        _isValidTimer = false;
-        _isPausedTimer = false;
         _isFinishedTimer = true;
+        _isPausedTimer = false;
+        
     }
+
+    public void InvalidateTimer()
+    {     
+        _isValidTimer = false;
+        _isFinishedTimer = false;
+        _isPausedTimer = false;
+    }
+
 
 }
